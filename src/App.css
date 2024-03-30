@@ -69,3 +69,15 @@ body{
     outline: none;
     
 }
+@media only screen and (max-width: 600px) {
+    body{
+        margin-top: 25%;
+    }
+    .password-generator{
+        max-width: 280px;
+        background-color: rgb(255, 255, 255);
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 9px;
+     }
+  }
