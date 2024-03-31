@@ -54,9 +54,9 @@ export const PasswordGenerator = () => {
       alert("Include some characters");
       return;
     }
-    else if(length<=0)
+    else if(length<=3)
     {
-      alert("Length of the password should be greater than 0");
+      alert("Length of the password should be greater than 3");
       return;
     }
     for(let i = 0; i < length-c; i++)
