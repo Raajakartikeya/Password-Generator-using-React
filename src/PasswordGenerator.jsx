@@ -8,22 +8,64 @@ export const PasswordGenerator = () => {
   const [symbol, setSymbol] = useState(true);
   const [password,setPassword] = useState("");
 
+  function shuffle(s) {
+    var arr = s.split(''); 
+    var n = arr.length;        
+    for(var i=0 ; i<n-1 ; ++i) {
+      var j = Math.floor(Math.random() * n);   
+      var temp = arr[i];             
+      arr[i] = arr[j];
+      arr[j] = temp;
+    }
+    s = arr.join('');             
+    return s;                        
+  }
+
   function generatePassword()
   {
     let charSet = "";
-    if(upper) charSet+= "QWERTYUIOPASDFGHJKLZXCVBNM";
-    if(lower) charSet+= "qwertyuiopasdfghjklzxcvbnm";
-    if(number) charSet+= "0123456789"
-    if(symbol) charSet+="!@#$%^&*_+-=;:"; 
-
     let generatedPassword = "";
-    for(let i = 0; i < length; i++)
+    let upperSet = "QWERTYUIOPASDFGHJKLZXCVBNM";
+    let lowerSet =  "qwertyuiopasdfghjklzxcvbnm";
+    let numberSet = "0123456789";
+    let symbolSet = "!@#$%&*"; 
+    let c = 0;
+    if(upper) {
+      charSet+= upperSet;
+      generatedPassword += upperSet[Math.floor(Math.random() * upperSet.length)];
+      c = c + 1;
+    }
+    if(lower) {
+      charSet+= lowerSet;
+      generatedPassword += lowerSet[Math.floor(Math.random() * lowerSet.length)];
+      c = c + 1;
+    }
+    if(number){
+      charSet+= numberSet;
+      generatedPassword += numberSet[Math.floor(Math.random() * numberSet.length)];
+      c = c + 1;
+    }
+    if(symbol){
+       charSet+= symbolSet;
+       generatedPassword += symbolSet[Math.floor(Math.random() * symbolSet.length)];
+       c = c + 1;
+    }
+    if(charSet==""){
+      alert("Include some characters");
+      return;
+    }
+    else if(length<=0)
+    {
+      alert("Length of the password should be greater than 0");
+      return;
+    }
+    for(let i = 0; i < length-c; i++)
     {
       const index = Math.floor(Math.random() * charSet.length);
       generatedPassword+=charSet[index];
     }
+    generatedPassword = shuffle(generatedPassword);
     setPassword(generatedPassword);
-
   }
   return (
     <>
